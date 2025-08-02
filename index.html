@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windsurf ホームページ生成プロンプト作成ツール</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Windsurf ホームページ生成プロンプト<br>作成ツール</h1>
+            <p class="subtitle">ホームページのテーマや構成情報を入力して、Windsurf用のプロンプトを自動生成します</p>
+        </header>
+
+        <main>
+            <form id="promptForm">
+                <!-- メインテーマ入力 -->
+                <div class="input-group main-theme">
+                    <label for="theme">ホームページのテーマ</label>
+                    <input type="text" id="theme" name="theme" placeholder="例：北欧風インテリアECサイト" required>
+                </div>
+
+                <!-- 詳細項目入力 -->
+                <div class="details-section">
+                    <h2>詳細設定</h2>
+                    
+                    <div class="input-group">
+                        <label for="target">① ターゲット層（ペルソナ）</label>
+                        <input type="text" id="target" name="target" placeholder="例：30-40代の女性、インテリアに興味がある方">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="color">② カラーや雰囲気</label>
+                        <input type="text" id="color" name="color" placeholder="例：白とグレーを基調に、ナチュラルで温かみのある色合い">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="content">③ 掲載したい情報</label>
+                        <input type="text" id="content" name="content" placeholder="例：料金表、スタッフ紹介、お客様の声、商品カタログ">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="font">④ 使用したいフォントやスタイル</label>
+                        <input type="text" id="font" name="font" placeholder="例：モダンで読みやすいサンセリフフォント、見出しは太字">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="animation">⑤ 使用したいアニメーションの有無・種類</label>
+                        <input type="text" id="animation" name="animation" placeholder="例：スクロール時のフェードイン、ホバー効果">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="pages">⑥ 必要なページ構成</label>
+                        <input type="text" id="pages" name="pages" placeholder="例：TOP / サービス紹介 / 商品一覧 / お問い合わせ">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="contact">⑦ 問い合わせ導線の位置</label>
+                        <input type="text" id="contact" name="contact" placeholder="例：ヘッダーとフッターの両方、各ページの下部">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="images">⑧ 使用したい画像やアイコンの雰囲気</label>
+                        <input type="text" id="images" name="images" placeholder="例：明るく清潔感のある商品写真、シンプルなアイコン">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="keywords">⑨ 世界観のキーワード</label>
+                        <input type="text" id="keywords" name="keywords" placeholder="例：シンプル、高級感、北欧、ナチュラル、モダン">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="memo">⑩ その他、Windsurfプロンプトに反映させたいメモ</label>
+                        <textarea id="memo" name="memo" rows="3" placeholder="例：レスポンシブ対応必須、SEO対策も考慮してほしい"></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="generate-btn">プロンプト生成</button>
+                
+                <!-- クリアボタン -->
+                <div class="clear-buttons">
+                    <button type="button" class="clear-btn clear-input-btn" onclick="clearInputs()">入力内容をクリア</button>
+                    <button type="button" class="clear-btn clear-result-btn" onclick="clearResult()">生成結果をクリア</button>
+                </div>
+            </form>
+
+            <!-- 生成結果表示エリア -->
+            <div id="result" class="result-section" style="display: none;">
+                <h2>生成されたプロンプト</h2>
+                <div class="prompt-output">
+                    <textarea id="generatedPrompt" readonly></textarea>
+                    <button type="button" class="copy-btn" onclick="copyPrompt()">コピー</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

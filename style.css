@@ -239,6 +239,35 @@ textarea {
     background-color: #218838;
 }
 
+/* 編集ボタン */
+.edit-btn {
+    position: absolute;
+    top: 60px; /* コピーボタンから50pxの間隔 */
+    right: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover {
+    background-color: #0056b3;
+}
+
+/* 編集モード時のスタイル */
+.edit-btn.editing {
+    background-color: #dc3545;
+}
+
+.edit-btn.editing:hover {
+    background-color: #c82333;
+}
+
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
     .container {

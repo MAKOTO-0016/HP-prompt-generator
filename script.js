@@ -395,14 +395,21 @@ function displayResult(prompt) {
 function copyPrompt() {
     const promptText = generatedPromptTextarea.value;
     
+    if (!promptText) {
+        showNotification('コピーするプロンプトがありません', 'error');
+        return;
+    }
+    
     // クリップボードにコピー
     navigator.clipboard.writeText(promptText).then(() => {
-        // コピー成功の視覚的フィードバック
+        // 成功通知
+        showNotification('プロンプトをクリップボードにコピーしました！', 'success');
+        
+        // ボタンの視覚的フィードバック
         const copyBtn = document.querySelector('.copy-btn');
         const originalText = copyBtn.textContent;
-        
         copyBtn.textContent = 'コピー完了！';
-        copyBtn.style.backgroundColor = '#28a745';
+        copyBtn.style.backgroundColor = '#218838';
         
         setTimeout(() => {
             copyBtn.textContent = originalText;
@@ -411,13 +418,43 @@ function copyPrompt() {
         
     }).catch(err => {
         console.error('コピーに失敗しました:', err);
-        
-        // フォールバック: テキストエリアを選択状態にする
-        generatedPromptTextarea.select();
-        generatedPromptTextarea.setSelectionRange(0, 99999);
-        
-        alert('プロンプトが選択されました。Ctrl+C（Mac: Cmd+C）でコピーしてください。');
+        showNotification('コピーに失敗しました', 'error');
     });
+}
+
+// 編集モード切り替え関数
+function toggleEditMode() {
+    const editBtn = document.querySelector('.edit-btn');
+    const promptTextarea = document.getElementById('generatedPrompt');
+    
+    if (!promptTextarea.value) {
+        showNotification('編集するプロンプトがありません', 'error');
+        return;
+    }
+    
+    // 現在の編集状態を確認
+    const isEditing = editBtn.classList.contains('editing');
+    
+    if (isEditing) {
+        // 編集モードを終了
+        promptTextarea.readOnly = true;
+        editBtn.classList.remove('editing');
+        editBtn.textContent = '編集';
+        showNotification('編集モードを終了しました', 'info');
+    } else {
+        // 編集モードを開始
+        // 現在のスクロール位置を保存
+        const currentScrollTop = promptTextarea.scrollTop;
+        
+        promptTextarea.readOnly = false;
+        editBtn.classList.add('editing');
+        editBtn.textContent = '完了';
+        
+        // スクロール位置を復元
+        promptTextarea.scrollTop = currentScrollTop;
+        
+        showNotification('編集モードに入りました。プロンプトを自由に編集できます', 'success');
+    }
 }
 
 // 入力値の保存・復元機能（オプション）

@@ -208,7 +208,7 @@ textarea {
 
 #generatedPrompt {
     width: 100%;
-    min-height: 200px;
+    min-height: 800px;
     padding: 20px;
     border: 2px solid #dee2e6;
     border-radius: 8px;
